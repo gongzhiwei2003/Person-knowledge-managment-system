@@ -1,0 +1,52 @@
+#server:
+#  port: 8080
+#  servlet:
+#    context-path: /api
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/knowledge_db?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
+    user:
+      name: user
+      password: 123456
+#      配置文件上传大小
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+#  autoconfigure:
+#    exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+
+
+app:
+  cors:
+    allowed-origins: "http://localhost:5173,http://localhost:3000"
+    allowed-methods: "GET,POST,PUT,DELETE,OPTIONS"
+    allowed-headers: "*"
+    allow-credentials: true
+  upload:
+    dir: D:/uploads/avatars   # 可自定义，确保该目录存在且有写入权限
+
+jwt:
+  secret: your-very-long-secret-key-at-least-32-characters-long!
+  expiration: 86400000
+
+logging:
+  level:
+    com.learn.knowledgesystem: DEBUG
+#    org.springframework.security: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.springframework.web: DEBUG
+    org.hibernate: DEBUG
